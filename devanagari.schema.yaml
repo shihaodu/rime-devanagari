@@ -1,0 +1,151 @@
+# Rime schema
+# vim: set sw=2 sts=2 et:
+# encoding: utf-8
+
+schema:
+  schema_id: devanagari
+  name: "天城文"
+  version: "2025.03.21"
+  author:
+    - shihaodu<shihao.du1994@gmail.com>
+  description:
+    按转写规则输入天城字母。辅音字母默认自带中性元音/a/，不需单独输入；
+    长元音双写，但आ出现在辅音字母后时只需单写a。例：देवनागरी devnagrii。
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [天城文, 西文]
+  - name: full_shape
+    reset: 0
+    states: [ 半角, 全角 ]
+  - name: ascii_punct
+    reset: 0
+    states: [ ．，, 。， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - selector
+    - punctuator
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+    - matcher
+  translators:
+    - punct_translator
+    - table_translator
+    - script_translator
+
+# menu:
+#   alternative_select_keys: "ABCDEFGHIJ"
+
+speller:
+  alphabet: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ,.''`-'
+  delimiter: ' '
+  auto_select: false
+
+
+
+translator:
+  dictionary: devanagari
+  prism: devanagari
+  spelling_hints: 9
+  enable_user_dict: true
+  enable_sentence: false
+  enable_completion: true
+  comment_format:
+    - 'xform aa ā'
+    - xform/([bcdfghjklmnpqrstvwxyzBCDFGHJLMNPQRSTVWXYZ.,])a/$1ā/
+    - xform/ā([iu])/a$1/
+    - xform/a(ii)/ā$1/
+    - xform/a(uu)/ā$1/
+    - 'xform ii ī'
+    - 'xform uu ū'
+    - 'xform oo ŏ'
+    - 'xform o, ȯ'
+    - 'xform ee ĕ'
+    - 'xform e, ė'
+    - 'xform r,, ṝ'
+    - 'xform r, ŕ'
+    - 'xform l,, ḹ'
+    - 'xform l, ḷ'
+    - 'xform w m̐'
+    - 'xform M ṁ'
+    - 'xform H ḥ'
+
+    - 'xform ng ṅ'
+    - 'xform nj ñ'
+    - 'xform sh ś'
+    - 'xform S ṣ'
+    - 'xform T ṭ'
+    - 'xform D ḍ'
+    - 'xform N ṇ'
+    - 'xform L ḻ'
+    - 'xform G ġ'
+    - 'xform R ṛ'
+    - 'xform x k͟h'
+  preedit_format:
+    - 'xform aa ā'
+    - xform/([bcdfghjklmnpqrstvwxyzBCDFGHJLMNPQRSTVWXYZ.,])a/$1ā/
+    - xform/ā([iu])/a$1/
+    - xform/a(ii)/ā$1/
+    - xform/a(uu)/ā$1/
+    - 'xform ii ī'
+    - 'xform uu ū'
+    - 'xform oo ŏ'
+    - 'xform o, ȯ'
+    - 'xform ee ĕ'
+    - 'xform e, ė'
+    - 'xform r,, ṝ'
+    - 'xform r, ṛ'
+    - 'xform l,, ḹ'
+    - 'xform l, ḷ'
+    - 'xform w m̐'
+    - 'xform M ṁ'
+    - 'xform H ḥ'
+
+    - 'xform ng ṅ'
+    - 'xform nj ñ'
+    - 'xform sh ś'
+    - 'xform S ṣ'
+    - 'xform T ṭ'
+    - 'xform D ḍ'
+    - 'xform N ṇ'
+    - 'xform L ḻ'
+    - 'xform G ġ'
+    - 'xform R ṛ'
+    - 'xform x k͟h'
+
+
+punctuator:
+  half_shape:
+    "0" : "०"
+    "1" : "१"
+    "2" : "२"
+    "3" : "३"
+    "4" : "४"
+    "5" : "५"
+    "6" : "६"
+    "7" : "७"
+    "8" : "८"
+    "9" : "९"
+    "." : ["।", "॥"]
+    "|" : { commit: " " }  ##會空一格並上屏，原「|」鍵會失效變「空格」。可結合key_binder空白鍵，使空白鍵能空一格上屏。
+
+
+key_binder:
+  import_preset: default
+  bindings:
+    - {accept: space, send: bar, when: has_menu} #按空白鍵後會空一格並上屏，原「|」鍵會失效變「空格」。
+    - {accept: "Control+Shift+Z", select: double_pinyin_flypy, when: always}
+    - {accept: "Control+Shift+z", select: double_pinyin_flypy, when: always}
+    - {accept: "Control+Shift+N", select: japanese, when: always}
+    - {accept: "Control+Shift+n", select: japanese, when: always}
