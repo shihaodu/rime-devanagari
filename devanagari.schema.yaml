@@ -4,12 +4,12 @@
 
 schema:
   schema_id: devanagari
-  name: "天城文"
+  name: "印地天城"
   version: "2025.03.21"
   author:
     - shihaodu<shihao.du1994@gmail.com>
   description:
-    按转写规则输入天城字母。辅音字母默认自带中性元音/a/，不需单独输入；
+    按转写规则输入天城字母。辅音字母默认自带中性元音अ，不需单独输入；
     长元音双写，但आ出现在辅音字母后时只需单写a。例：देवनागरी devnagrii。
 
 switches:
@@ -138,13 +138,13 @@ punctuator:
     "8" : "८"
     "9" : "९"
     "." : ["।", "॥"]
-    "|" : { commit: " " }  ##會空一格並上屏，原「|」鍵會失效變「空格」。可結合key_binder空白鍵，使空白鍵能空一格上屏。
+    #"|" : { commit: " " }  ##會空一格並上屏，原「|」鍵會失效變「空格」。可結合key_binder空白鍵，使空白鍵能空一格上屏。
 
 
 key_binder:
   import_preset: default
   bindings:
-    - {accept: space, send: bar, when: has_menu} #按空白鍵後會空一格並上屏，原「|」鍵會失效變「空格」。
+    #- {accept: space, send: bar, when: has_menu} #按空白鍵後會空一格並上屏，原「|」鍵會失效變「空格」。
     - {accept: "Control+Shift+Z", select: double_pinyin_flypy, when: always}
     - {accept: "Control+Shift+z", select: double_pinyin_flypy, when: always}
     - {accept: "Control+Shift+N", select: japanese, when: always}
