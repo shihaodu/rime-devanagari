@@ -1,18 +1,4 @@
-﻿# Rime dictionary
-# encoding: utf-8
-#
-# Sanskrit/Devanagari 天城體梵語 by polyhedron
-#
-# 使用說明
-#   基本按轉寫
-# Author:
-#  - polyhedron	<biopolyhedron@gmail.com>
-#  - 2013.01.19
-#
-# 版權歸作者所有
-#
-
----
+﻿---
 name: devanagari
 version: "poly2013.01.19"
 sort: original
