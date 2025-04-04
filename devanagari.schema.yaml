@@ -4,13 +4,17 @@
 
 schema:
   schema_id: devanagari
-  name: "印地天城"
+  name: "天城文"
   version: "2025.03.21"
   author:
     - shihaodu<shihao.du1994@gmail.com>
   description:
-    按转写规则输入天城字母。辅音字母默认自带中性元音अ，不需单独输入；
-    长元音双写，但आ出现在辅音字母后时只需单写a。例：देवनागरी devnagrii。
+    天城文拼音键盘。输入时按IAST转写规则显示拉丁字母。
+
+    输入提示：
+    辅音字母默认自带中性元音अ，不需单独输入；
+    元音出现在词首时大写首字母。例：और Aur；
+    长元音双写，但आ出现在辅音字母后时只需再输入一个a。例：देवनागरी devnagrii。
 
 switches:
   - name: ascii_mode
@@ -48,39 +52,44 @@ engine:
 #   alternative_select_keys: "ABCDEFGHIJ"
 
 speller:
-  alphabet: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ,.''`-'
-  delimiter: ' '
-  auto_select: false
+  alphabet: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ,.''`~'
+  delimiter: ";"
+
 
 
 
 translator:
   dictionary: devanagari
   prism: devanagari
-  spelling_hints: 9
-  enable_user_dict: true
+  spelling_hints: 5
+  enable_user_dict: false
   enable_sentence: false
-  enable_completion: true
   comment_format:
-    - 'xform aa ā'
-    - xform/([bcdfghjklmnpqrstvwxyzBCDFGHJLMNPQRSTVWXYZ.,])a/$1ā/
+    - xform/([bcdfghjklmnpqrstvxyzDGLNRST~])(;|$)/$1a$2/
+    - xform/a;\./.a/
+    - xform/a;([eiou]|r,|l,)/$1/
+    - xform/(A|a;)a/ā/
     - xform/ā([iu])/a$1/
-    - xform/a(ii)/ā$1/
-    - xform/a(uu)/ā$1/
-    - 'xform ii ī'
-    - 'xform uu ū'
-    - 'xform oo ŏ'
-    - 'xform o, ȯ'
-    - 'xform ee ĕ'
-    - 'xform e, ė'
-    - 'xform r,, ṝ'
-    - 'xform r, ŕ'
-    - 'xform l,, ḹ'
-    - 'xform l, ḷ'
-    - 'xform w m̐'
-    - 'xform M ṁ'
-    - 'xform H ḥ'
-
+    - xform/(I|i)i/ī/
+    - xform/(U|u)u/ū/
+    - xform/(O|o)o/ŏ/
+    - xform/(O|o),/ô/
+    - xform/(E|e)e/ĕ/
+    - xform/(E|e),/ê/
+    - xform/(R|r),,/ṝ/
+    - xform/(R|r),/ŕ/
+    - xform/(L|l),,/ḹ/
+    - xform/(L|l),/ḷ/
+    - xform/(A|a)/a/
+    - xform/(E|e)/e/
+    - xform/(I|i)/i/
+    - xform/(O|o)/o/
+    - xform/(U|u)/u/
+    - xform/(a;)'//
+    - xform/([bcdfghjklmnpqrstvxyzDGLNRST~\.]);/$1/
+    - 'xform ;w m̐'
+    - 'xform ;M ṁ'
+    - 'xform ;H ḥ'
     - 'xform ng ṅ'
     - 'xform nj ñ'
     - 'xform sh ś'
@@ -92,26 +101,34 @@ translator:
     - 'xform G ġ'
     - 'xform R ṛ'
     - 'xform x k͟h'
+    - 'xform ; '
+    
   preedit_format:
-    - 'xform aa ā'
-    - xform/([bcdfghjklmnpqrstvwxyzBCDFGHJLMNPQRSTVWXYZ.,])a/$1ā/
+    - xform/([bcdfghjklmnpqrstvxyzDGLNRST~])(;|$)/$1a$2/
+    - xform/a;\./.a/
+    - xform/a;([eiou]|r,|l,)/$1/
+    - xform/(A|a;)a/ā/
     - xform/ā([iu])/a$1/
-    - xform/a(ii)/ā$1/
-    - xform/a(uu)/ā$1/
-    - 'xform ii ī'
-    - 'xform uu ū'
-    - 'xform oo ŏ'
-    - 'xform o, ȯ'
-    - 'xform ee ĕ'
-    - 'xform e, ė'
-    - 'xform r,, ṝ'
-    - 'xform r, ṛ'
-    - 'xform l,, ḹ'
-    - 'xform l, ḷ'
-    - 'xform w m̐'
-    - 'xform M ṁ'
-    - 'xform H ḥ'
-
+    - xform/(I|i)i/ī/
+    - xform/(U|u)u/ū/
+    - xform/(O|o)o/ŏ/
+    - xform/(O|o),/ô/
+    - xform/(E|e)e/ĕ/
+    - xform/(E|e),/ê/
+    - xform/(R|r),,/ṝ/
+    - xform/(R|r),/ŕ/
+    - xform/(L|l),,/ḹ/
+    - xform/(L|l),/ḷ/
+    - xform/(A|a)/a/
+    - xform/(E|e)/e/
+    - xform/(I|i)/i/
+    - xform/(O|o)/o/
+    - xform/(U|u)/u/
+    - xform/(a;)'//
+    - xform/([bcdfghjklmnpqrstvxyzDGLNRST~\.]);/$1/
+    - 'xform ;w m̐'
+    - 'xform ;M ṁ'
+    - 'xform ;H ḥ'
     - 'xform ng ṅ'
     - 'xform nj ñ'
     - 'xform sh ś'
@@ -123,6 +140,7 @@ translator:
     - 'xform G ġ'
     - 'xform R ṛ'
     - 'xform x k͟h'
+    - 'xform ; '
 
 
 punctuator:
@@ -137,7 +155,7 @@ punctuator:
     "7" : "७"
     "8" : "८"
     "9" : "९"
-    "." : ["।", "॥"]
+    "." : ["।", "॥", "॰"]
     #"|" : { commit: " " }  ##會空一格並上屏，原「|」鍵會失效變「空格」。可結合key_binder空白鍵，使空白鍵能空一格上屏。
 
 
@@ -147,5 +165,3 @@ key_binder:
     #- {accept: space, send: bar, when: has_menu} #按空白鍵後會空一格並上屏，原「|」鍵會失效變「空格」。
     - {accept: "Control+Shift+Z", select: double_pinyin_flypy, when: always}
     - {accept: "Control+Shift+z", select: double_pinyin_flypy, when: always}
-    - {accept: "Control+Shift+N", select: japanese, when: always}
-    - {accept: "Control+Shift+n", select: japanese, when: always}
