@@ -1,7 +1,7 @@
 # Rime天城文输入法
 
 ## 关于
-基于Rime的天城文输入法。输入时按IAST转写规则显示拉丁字母。
+基于Rime的天城文输入法。由Polyhedron的输入法（https://github.com/biopolyhedron/rime-devanagari）改进而来。输入时按IAST转写规则显示拉丁字母。
 
 输入提示：
 - 辅音字母默认自带中性元音अ，不需单独输入；
